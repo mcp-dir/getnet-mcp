@@ -1,0 +1,34 @@
+# Smithery configuration for Getnet
+# Schema: https://smithery.ai/docs/build/project-config
+# Remote HTTP MCP — server hosted at https://api.mcp.ai/p_getnet
+
+name: getnet-mcp
+displayName: "Getnet"
+description: >
+  Adquirente Getnet (Santander) via Plataforma Digital API, somente leitura: consulta de transação por payment_id (crédito, débito, PIX, boleto), cofre de cartões tokenizados e clientes. Não cria nem altera cobranças. Atenção, extrato de vendas e recebíveis não fazem parte desta API (vivem no Extrato Eletrônico e no Conciliador, produtos separados da Getnet). Autenticação pelas chaves da Plataforma Digital (client_id, client_secret e seller_id) geradas no Painel Getnet.
+
+version: 0.1.0
+license: MIT
+homepage: https://github.com/mcp-dir/getnet-mcp
+repository: https://github.com/mcp-dir/getnet-mcp
+
+tags:
+  - getnet
+  - brazil
+  - fin
+  - horizontal
+  - read-write
+
+# Remote HTTP MCP — sem startCommand local (servidor já hospedado)
+startCommand:
+  type: http
+  url: https://api.mcp.ai/p_getnet
+
+auth:
+  type: oauth2
+  resourceMetadataUrl: https://api.mcp.ai/p_getnet/.well-known/oauth-protected-resource
+  fallback:
+    type: agent-auth
+    description: >
+      Para clientes sem OAuth 2.1. O agente expõe uma tool authenticate(token).
+      Usuário gera o JWT em https://app.mcp.ai/agent-auth e cola no chat.

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.mcp-dir/getnet-mcp",
+  "title": "Getnet",
+  "description": "Getnet acquirer (Santander) via the Plataforma Digital API, read-only: consult a transaction by paym",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/mcp-dir/getnet-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.mcp.ai/p_getnet"
+    }
+  ]
+}
